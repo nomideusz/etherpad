@@ -43,7 +43,7 @@ services:
       PGDATA: /var/lib/postgresql/data/pgdata
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d srv-captain--notes-db"]
+      test: ["CMD-SHELL", "pg_isready -U ${DOCKER_COMPOSE_POSTGRES_USER:-postgres} -d ${DOCKER_COMPOSE_POSTGRES_DATABASE:-etherpad}"]
       interval: 10s
       timeout: 5s
       retries: 5
