@@ -8,11 +8,11 @@
   "showSettingsInAdminPage": true,
   "dbType": "postgres",
   "dbSettings": {
-    "user": "etherpad",
+    "user": "${DB_USER}",
     "host": "postgres",
     "port": 5432,
     "password": "${DB_PASS}",
-    "database": "etherpad",
+    "database": "${DB_NAME}",
     "charset": "utf8mb4"
   },
   "defaultPadText": "Welcome to Notes!\n\nThis is a collaborative real-time editor.\nStart typing to create your first pad.\n",
