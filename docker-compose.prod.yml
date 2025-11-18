@@ -9,7 +9,8 @@ services:
       - etherpad-var:/opt/etherpad-lite/var
       - ./settings.json:/opt/etherpad-lite/settings.json:ro
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     environment:
       NODE_ENV: production
       ADMIN_PASSWORD: ${ETHERPAD_ADMIN_PASSWORD}
@@ -41,6 +42,11 @@ services:
       POSTGRES_USER: ${DOCKER_COMPOSE_POSTGRES_USER:-etherpad}
       PGDATA: /var/lib/postgresql/data/pgdata
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d srv-captain--notes-db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
