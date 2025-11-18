@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [viteStaticCopy({
       targets: [
           {
-              src: '../src/locales',
+              src: '../etherpad-lite-2.5.3/src/locales',
               dest: ''
           }
       ]
@@ -17,7 +17,7 @@ export default defineConfig({
     }})],
     base: '/admin',
     build:{
-      outDir: '../src/templates/admin',
+      outDir: '../etherpad-lite-2.5.3/src/templates/admin',
         emptyOutDir: true,
     },
   server:{
