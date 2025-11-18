@@ -9,8 +9,7 @@ services:
       - etherpad-var:/opt/etherpad-lite/var
       - ./settings.json:/opt/etherpad-lite/settings.json:ro
     depends_on:
-      postgres:
-        condition: service_healthy
+      - postgres
     environment:
       NODE_ENV: production
       ADMIN_PASSWORD: ${ETHERPAD_ADMIN_PASSWORD}
