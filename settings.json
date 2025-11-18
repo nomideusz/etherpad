@@ -1,0 +1,112 @@
+{
+  "title": "Notes - Real-time Collaborative Editor",
+  "favicon": "favicon.ico",
+  "skinName": "colibris",
+  "skinVariants": "super-light-toolbar super-light-editor light-background",
+  "ip": "0.0.0.0",
+  "port": 9001,
+  "showSettingsInAdminPage": true,
+  "dbType": "postgres",
+  "dbSettings": {
+    "user": "${DB_USER:etherpad}",
+    "host": "${DB_HOST:postgres}",
+    "port": "${DB_PORT:5432}",
+    "password": "${DB_PASS}",
+    "database": "${DB_NAME:etherpad}",
+    "charset": "${DB_CHARSET:utf8mb4}"
+  },
+  "defaultPadText": "Welcome to Notes!\n\nThis is a collaborative real-time editor.\nStart typing to create your first pad.\n",
+  "padOptions": {
+    "noColors": false,
+    "showControls": true,
+    "showChat": true,
+    "showLineNumbers": true,
+    "useMonospaceFont": false,
+    "userName": false,
+    "userColor": false,
+    "rtl": false,
+    "alwaysShowChat": false,
+    "chatAndUsers": true,
+    "lang": "en"
+  },
+  "padShortcutEnabled": {
+    "altF9": true,
+    "altC": true,
+    "cmdShift2": true,
+    "delete": true,
+    "return": true,
+    "esc": true,
+    "cmdS": true,
+    "tab": true,
+    "cmdZ": true,
+    "cmdY": true,
+    "cmdI": true,
+    "cmdB": true,
+    "cmdU": true,
+    "cmd5": true,
+    "cmdShiftL": true,
+    "cmdShiftN": true,
+    "cmdShift1": true,
+    "cmdShiftC": true,
+    "cmdH": true,
+    "ctrlH": true,
+    "cmdShiftMinus": true,
+    "altI": true,
+    "altB": true,
+    "cmdShiftUnderscore": true,
+    "cmdShiftPlus": true,
+    "cmdL": true,
+    "cmdShiftF": true,
+    "cmdShiftEqual": true,
+    "cmdEqual": true,
+    "cmdShiftKey": true,
+    "cmdShiftMinusBrowser": true
+  },
+  "suppressErrorsInPadText": false,
+  "requireSession": false,
+  "editOnly": false,
+  "sessionNoPassword": false,
+  "minify": true,
+  "maxAge": 21600,
+  "abiword": null,
+  "soffice": null,
+  "exportAvailable": "txt,html,doc,pdf,odt",
+  "exportEnabled": true,
+  "importExportRateLimiting": {
+    "windowMs": 90000,
+    "max": 10
+  },
+  "importMaxFileSize": 52428800,
+  "requireAuthentication": false,
+  "requireAuthorization": false,
+  "users": {
+    "admin": {
+      "password": "${ADMIN_PASSWORD:admin}",
+      "is_admin": true
+    }
+  },
+  "trustProxy": true,
+  "disableIPlogging": true,
+  "automaticReconnectionTimeout": 0,
+  "scrollWhenFocusLineIsOutOfViewport": {
+    "percentage": {
+      "editionAboveViewport": 0,
+      "editionBelowViewport": 0
+    },
+    "duration": 0,
+    "scrollWhenCaretIsInTheLastLineOfViewport": false,
+    "percentageToScrollWhenUserPressesArrowUp": 0
+  },
+  "socketTransportProtocols": ["xhr-polling", "jsonp-polling", "htmlfile"],
+  "loadTest": false,
+  "dumpOnUncleanExit": false,
+  "loglevel": "INFO",
+  "logconfig": {
+    "appenders": [
+      {
+        "type": "console"
+      }
+    ],
+    "replaceConsole": true
+  }
+}
