@@ -81,7 +81,7 @@
   "requireAuthorization": false,
   "users": {
     "admin": {
-      "password": "${ADMIN_PASSWORD:admin}",
+      "password": "dupadupa",
       "is_admin": true
     }
   },
