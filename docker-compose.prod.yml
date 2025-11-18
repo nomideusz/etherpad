@@ -1,0 +1,72 @@
+services:
+  etherpad:
+    user: "0:0"
+    image: etherpad/etherpad:latest
+    tty: true
+    stdin_open: true
+    volumes:
+      - plugins:/opt/etherpad-lite/src/plugin_packages
+      - etherpad-var:/opt/etherpad-lite/var
+      - ./settings.json:/opt/etherpad-lite/settings.json:ro
+    depends_on:
+      - postgres
+    environment:
+      NODE_ENV: production
+      ADMIN_PASSWORD: ${ETHERPAD_ADMIN_PASSWORD}
+      DB_CHARSET: utf8mb4
+      DB_HOST: postgres
+      DB_NAME: etherpad
+      DB_PASS: ${POSTGRES_PASSWORD}
+      DB_PORT: 5432
+      DB_TYPE: postgres
+      DB_USER: etherpad
+      DEFAULT_PAD_TEXT: |
+        Welcome to Notes!
+
+        This is a collaborative real-time editor.
+        Start typing to create your first pad.
+      DISABLE_IP_LOGGING: true
+      SOFFICE: null
+      TRUST_PROXY: true
+      TITLE: "Notes - Real-time Collaborative Editor"
+    restart: unless-stopped
+    networks:
+      - etherpad_network
+
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: etherpad
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_USER: etherpad
+      PGDATA: /var/lib/postgresql/data/pgdata
+    restart: unless-stopped
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - etherpad_network
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - nginx_logs:/var/log/nginx
+    depends_on:
+      - etherpad
+    restart: unless-stopped
+    networks:
+      - etherpad_network
+
+volumes:
+  postgres_data:
+  plugins:
+  etherpad-var:
+  nginx_logs:
+
+networks:
+  etherpad_network:
+    driver: bridge
