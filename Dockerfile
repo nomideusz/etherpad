@@ -116,8 +116,8 @@ WORKDIR "${EP_DIR}"
 
 # etherpads version feature requires this. Only copy what is really needed
 COPY --chown=etherpad:etherpad ${SETTINGS} ./settings.json
-COPY --chown=etherpad:etherpad ./var ./var
-COPY --chown=etherpad:etherpad ./bin ./bin
+COPY --chown=etherpad:etherpad ./etherpad-lite-2.5.3/var ./var
+COPY --chown=etherpad:etherpad ./etherpad-lite-2.5.3/bin ./bin
 COPY --chown=etherpad:etherpad ./pnpm-workspace.yaml ./package.json ./
 
 
@@ -138,8 +138,8 @@ ARG ETHERPAD_LOCAL_PLUGINS=
 ARG ETHERPAD_LOCAL_PLUGINS_ENV=
 ARG ETHERPAD_GITHUB_PLUGINS=
 
-COPY --chown=etherpad:etherpad ./src/ ./src/
-COPY --chown=etherpad:etherpad --from=adminbuild /opt/etherpad-lite/src/ templates/admin./src/templates/admin
+COPY --chown=etherpad:etherpad ./etherpad-lite-2.5.3/src/ ./src/
+COPY --chown=etherpad:etherpad --from=adminbuild /opt/etherpad-lite/src/templates/admin ./src/templates/admin
 COPY --chown=etherpad:etherpad --from=adminbuild /opt/etherpad-lite/src/static/oidc ./src/static/oidc
 
 COPY --chown=etherpad:etherpad ./local_plugin[s] ./local_plugins/
@@ -162,7 +162,7 @@ ARG ETHERPAD_GITHUB_PLUGINS=
 ENV NODE_ENV=production
 ENV ETHERPAD_PRODUCTION=true
 
-COPY --chown=etherpad:etherpad ./src ./src
+COPY --chown=etherpad:etherpad ./etherpad-lite-2.5.3/src ./src
 COPY --chown=etherpad:etherpad --from=adminbuild /opt/etherpad-lite/src/templates/admin ./src/templates/admin
 COPY --chown=etherpad:etherpad --from=adminbuild /opt/etherpad-lite/src/static/oidc ./src/static/oidc
 
